@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JPKM Lookup</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='JPKM LOGO.png') }}" alt="Logo JPKM" class="logo">
+    <h1>Cari Nomor Peserta JPKM</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+      <label for="excel_file">Upload File Excel:</label>
+      <input type="file" name="excel_file" accept=".xls,.xlsx">
+      <button type="submit">Upload</button>
+    </form>
+
+    <form method="POST">
+      <label for="participant_number">Nomor Peserta:</label>
+      <input type="text" name="participant_number" required>
+      <button type="submit">Cari</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+      <div class="result">
+        <h3>Hasil Pencarian:</h3>
+        <pre>{{ result }}</pre>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
